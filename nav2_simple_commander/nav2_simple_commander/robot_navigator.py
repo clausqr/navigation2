@@ -310,7 +310,10 @@ class BasicNavigator(Node):
 
     def waitUntilNav2Active(self, navigator='bt_navigator', localizer='amcl'):
         """Block until the full navigation system is up and running."""
-        self._waitForNodeToActivate(localizer)
+        # TODO: commented. https://github.com/cra-ros-pkg/robot_localization/issues/844
+        # self._waitForNodeToActivate(localizer)
+        if localizer != "robot_localization":
+            self._waitForNodeToActivate(localizer)
         if localizer == 'amcl':
             self._waitForInitialPose()
         self._waitForNodeToActivate(navigator)
